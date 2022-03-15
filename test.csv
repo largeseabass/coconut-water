@@ -1,0 +1,277 @@
+,name_match,2014night,2014Population,Endemicity,TargetPop,Cov
+0,Ambohidratrimo,0.190077487623921,438417,High prevalence (50% and above),PreSAC,0.0
+1,Ambohidratrimo,0.190077487623921,438417,High prevalence (50% and above),SAC,0.0
+2,Ambohidratrimo,0.190077487623921,438417,High prevalence (50% and above),Total,0.0
+3,Ankazobe,0.0928495079415775,166499,Low prevalence (less than 20%),PreSAC,0.0
+4,Ankazobe,0.0928495079415775,166499,Low prevalence (less than 20%),SAC,0.0
+5,Ankazobe,0.0928495079415775,166499,Low prevalence (less than 20%),Total,0.0
+6,Manjakandriana,0.0289193843047874,224300,High prevalence (50% and above),PreSAC,0.0
+7,Manjakandriana,0.0289193843047874,224300,High prevalence (50% and above),SAC,0.0
+8,Manjakandriana,0.0289193843047874,224300,High prevalence (50% and above),Total,0.0
+9,Anjozorobe,0.0225320847691319,194615,Moderate prevalence (20%-49%),PreSAC,0.0
+10,Anjozorobe,0.0225320847691319,194615,Moderate prevalence (20%-49%),SAC,0.0
+11,Anjozorobe,0.0225320847691319,194615,Moderate prevalence (20%-49%),Total,0.0
+12,Andramasina,0.0215405509645773,186913,High prevalence (50% and above),PreSAC,0.0
+13,Andramasina,0.0215405509645773,186913,High prevalence (50% and above),SAC,72.91
+14,Andramasina,0.0215405509645773,186913,High prevalence (50% and above),Total,72.91
+15,Antsirabe I,0.55787113420505,262013,High prevalence (50% and above),PreSAC,0.0
+16,Antsirabe I,0.55787113420505,262013,High prevalence (50% and above),SAC,0.0
+17,Antsirabe I,0.55787113420505,262013,High prevalence (50% and above),Total,0.0
+18,Betafo,0.0490008534320844,279875,Moderate prevalence (20%-49%),PreSAC,0.0
+19,Betafo,0.0490008534320844,279875,Moderate prevalence (20%-49%),SAC,0.0
+20,Betafo,0.0490008534320844,279875,Moderate prevalence (20%-49%),Total,0.0
+21,Ambatolampy,0.0257420067170184,281444,High prevalence (50% and above),PreSAC,0.0
+22,Ambatolampy,0.0257420067170184,281444,High prevalence (50% and above),SAC,0.0
+23,Ambatolampy,0.0257420067170184,281444,High prevalence (50% and above),Total,0.0
+24,Antanifotsy,0.03089900688258,338334,High prevalence (50% and above),PreSAC,0.0
+25,Antanifotsy,0.03089900688258,338334,High prevalence (50% and above),SAC,0.0
+26,Antanifotsy,0.03089900688258,338334,High prevalence (50% and above),Total,0.0
+27,Faratsiho,0.011849371664483,212377,High prevalence (50% and above),PreSAC,0.0
+28,Faratsiho,0.011849371664483,212377,High prevalence (50% and above),SAC,0.0
+29,Faratsiho,0.011849371664483,212377,High prevalence (50% and above),Total,0.0
+30,Antsirabe II,0.0360135831728403,446455,High prevalence (50% and above),PreSAC,0.0
+31,Antsirabe II,0.0360135831728403,446455,High prevalence (50% and above),SAC,0.0
+32,Antsirabe II,0.0360135831728403,446455,High prevalence (50% and above),Total,0.0
+33,Mandoto,0.0466037961766818,160774,Low prevalence (less than 20%),PreSAC,0.0
+34,Mandoto,0.0466037961766818,160774,Low prevalence (less than 20%),SAC,0.0
+35,Mandoto,0.0466037961766818,160774,Low prevalence (less than 20%),Total,0.0
+36,Arivonimamo,0.0306992226015126,335024,Moderate prevalence (20%-49%),PreSAC,0.0
+37,Arivonimamo,0.0306992226015126,335024,Moderate prevalence (20%-49%),SAC,0.0
+38,Arivonimamo,0.0306992226015126,335024,Moderate prevalence (20%-49%),Total,0.0
+39,Miarinarivo,0.0651120687047758,264439,High prevalence (50% and above),PreSAC,0.0
+40,Miarinarivo,0.0651120687047758,264439,High prevalence (50% and above),SAC,93.18
+41,Miarinarivo,0.0651120687047758,264439,High prevalence (50% and above),Total,93.18
+42,Soavinandriana,0.0268571564747069,205693,High prevalence (50% and above),PreSAC,0.0
+43,Soavinandriana,0.0268571564747069,205693,High prevalence (50% and above),SAC,83.69
+44,Soavinandriana,0.0268571564747069,205693,High prevalence (50% and above),Total,83.69
+45,Tsiroanomandidy,0.0641956870890227,359189,Moderate prevalence (20%-49%),PreSAC,0.0
+46,Tsiroanomandidy,0.0641956870890227,359189,Moderate prevalence (20%-49%),SAC,0.0
+47,Tsiroanomandidy,0.0641956870890227,359189,Moderate prevalence (20%-49%),Total,0.0
+48,Fenoarivobe,0.0934018271563381,143316,Moderate prevalence (20%-49%),PreSAC,0.0
+49,Fenoarivobe,0.0934018271563381,143316,Moderate prevalence (20%-49%),SAC,0.0
+50,Fenoarivobe,0.0934018271563381,143316,Moderate prevalence (20%-49%),Total,0.0
+51,Fianarantsoa I,0.438038125996345,209100,Moderate prevalence (20%-49%),PreSAC,45.17
+52,Fianarantsoa I,0.438038125996345,209100,Moderate prevalence (20%-49%),SAC,55.58
+53,Fianarantsoa I,0.438038125996345,209100,Moderate prevalence (20%-49%),Total,51.75
+54,Ambalavao,0.0250894116358561,230083,Moderate prevalence (20%-49%),PreSAC,71.27
+55,Ambalavao,0.0250894116358561,230083,Moderate prevalence (20%-49%),SAC,124.96
+56,Ambalavao,0.0250894116358561,230083,Moderate prevalence (20%-49%),Total,105.21
+57,Ambohimahasoa,0.0314152214462908,235892,Low prevalence (less than 20%),PreSAC,75.5
+58,Ambohimahasoa,0.0314152214462908,235892,Low prevalence (less than 20%),SAC,122.71
+59,Ambohimahasoa,0.0314152214462908,235892,Low prevalence (less than 20%),Total,105.35
+60,Ikalamavony,0.0356310067092665,98194,Low prevalence (less than 20%),PreSAC,72.66
+61,Ikalamavony,0.0356310067092665,98194,Low prevalence (less than 20%),SAC,122.66
+62,Ikalamavony,0.0356310067092665,98194,Low prevalence (less than 20%),Total,104.27
+63,Lalangina,0.0337660186434614,186302,Not reported,PreSAC,0.0
+64,Lalangina,0.0337660186434614,186302,Not reported,SAC,0.0
+65,Lalangina,0.0337660186434614,186302,Not reported,Total,0.0
+66,Vohibato,0.0290417846155986,215719,Not reported,PreSAC,0.0
+67,Vohibato,0.0290417846155986,215719,Not reported,SAC,0.0
+68,Vohibato,0.0290417846155986,215719,Not reported,Total,0.0
+69,Ambatofinandrahana,0.0445950779471466,170813,Low prevalence (less than 20%),PreSAC,75.14
+70,Ambatofinandrahana,0.0445950779471466,170813,Low prevalence (less than 20%),SAC,121.96
+71,Ambatofinandrahana,0.0445950779471466,170813,Low prevalence (less than 20%),Total,104.74
+72,Ambositra,0.0343256852017046,288244,Low prevalence (less than 20%),PreSAC,85.01
+73,Ambositra,0.0343256852017046,288244,Low prevalence (less than 20%),SAC,125.68
+74,Ambositra,0.0343256852017046,288244,Low prevalence (less than 20%),Total,110.72
+75,Fandriana,0.0282735867891604,221507,High prevalence (50% and above),PreSAC,85.32
+76,Fandriana,0.0282735867891604,221507,High prevalence (50% and above),SAC,139.06
+77,Fandriana,0.0282735867891604,221507,High prevalence (50% and above),Total,119.3
+78,Manandriana,0.0358409557459465,105027,Low prevalence (less than 20%),PreSAC,0.0
+79,Manandriana,0.0358409557459465,105027,Low prevalence (less than 20%),SAC,95.89
+80,Manandriana,0.0358409557459465,105027,Low prevalence (less than 20%),Total,95.89
+81,Ifanadiana,0.0193553875119901,169496,High prevalence (50% and above),PreSAC,87.11
+82,Ifanadiana,0.0193553875119901,169496,High prevalence (50% and above),SAC,136.96
+83,Ifanadiana,0.0193553875119901,169496,High prevalence (50% and above),Total,118.63
+84,Mananjary,0.0068798345074713,348207,High prevalence (50% and above),PreSAC,87.4
+85,Mananjary,0.0068798345074713,348207,High prevalence (50% and above),SAC,110.1
+86,Mananjary,0.0068798345074713,348207,High prevalence (50% and above),Total,101.75
+87,Ikongo,0.0083536492338977,204417,High prevalence (50% and above),PreSAC,92.43
+88,Ikongo,0.0083536492338977,204417,High prevalence (50% and above),SAC,130.22
+89,Ikongo,0.0083536492338977,204417,High prevalence (50% and above),Total,116.32
+90,Vohipeno,0.0077747114611313,167371,High prevalence (50% and above),PreSAC,71.96
+91,Vohipeno,0.0077747114611313,167371,High prevalence (50% and above),SAC,91.04
+92,Vohipeno,0.0077747114611313,167371,High prevalence (50% and above),Total,84.03
+93,Ihosy,0.0291734738154008,223444,Moderate prevalence (20%-49%),PreSAC,34.93
+94,Ihosy,0.0291734738154008,223444,Moderate prevalence (20%-49%),SAC,96.52
+95,Ihosy,0.0291734738154008,223444,Moderate prevalence (20%-49%),Total,73.87
+96,Ivohibe,0.0263642680371275,64301,Moderate prevalence (20%-49%),PreSAC,50.49
+97,Ivohibe,0.0263642680371275,64301,Moderate prevalence (20%-49%),SAC,88.27
+98,Ivohibe,0.0263642680371275,64301,Moderate prevalence (20%-49%),Total,74.37
+99,Iakora,0.0378158259927907,55384,Moderate prevalence (20%-49%),PreSAC,72.82
+100,Iakora,0.0378158259927907,55384,Moderate prevalence (20%-49%),SAC,102.48
+101,Iakora,0.0378158259927907,55384,Moderate prevalence (20%-49%),Total,91.57
+102,Farafangana,0.0204338322078522,375579,High prevalence (50% and above),PreSAC,80.73
+103,Farafangana,0.0204338322078522,375579,High prevalence (50% and above),SAC,117.26
+104,Farafangana,0.0204338322078522,375579,High prevalence (50% and above),Total,103.83
+105,Vangaindrano,0.0261201498391402,362123,High prevalence (50% and above),PreSAC,64.87
+106,Vangaindrano,0.0261201498391402,362123,High prevalence (50% and above),SAC,101.19
+107,Vangaindrano,0.0261201498391402,362123,High prevalence (50% and above),Total,87.83
+108,Vondrozo,0.0137687599903427,140621,High prevalence (50% and above),PreSAC,61.05
+109,Vondrozo,0.0137687599903427,140621,High prevalence (50% and above),SAC,111.37
+110,Vondrozo,0.0137687599903427,140621,High prevalence (50% and above),Total,92.86
+111,Befotaka,0.0271414271634438,58731,High prevalence (50% and above),PreSAC,76.07
+112,Befotaka,0.0271414271634438,58731,High prevalence (50% and above),SAC,126.45
+113,Befotaka,0.0271414271634438,58731,High prevalence (50% and above),Total,107.92
+114,Toamasina I,5.12329739585421,301773,High prevalence (50% and above),PreSAC,90.43
+115,Toamasina I,5.12329739585421,301773,High prevalence (50% and above),SAC,94.04
+116,Toamasina I,5.12329739585421,301773,High prevalence (50% and above),Total,92.71
+117,Brickaville,-0.0066177920282427,206611,High prevalence (50% and above),PreSAC,93.27
+118,Brickaville,-0.0066177920282427,206611,High prevalence (50% and above),SAC,93.72
+119,Brickaville,-0.0066177920282427,206611,High prevalence (50% and above),Total,93.55
+120,Vatomandry,-0.0055412872885827,153713,High prevalence (50% and above),PreSAC,95.47
+121,Vatomandry,-0.0055412872885827,153713,High prevalence (50% and above),SAC,96.0
+122,Vatomandry,-0.0055412872885827,153713,High prevalence (50% and above),Total,95.8
+123,Mahanoro,0.0005864844975134,262000,High prevalence (50% and above),PreSAC,110.0
+124,Mahanoro,0.0005864844975134,262000,High prevalence (50% and above),SAC,110.0
+125,Mahanoro,0.0005864844975134,262000,High prevalence (50% and above),Total,110.0
+126,Marolambo,0.0125894643019672,164315,High prevalence (50% and above),PreSAC,98.1
+127,Marolambo,0.0125894643019672,164315,High prevalence (50% and above),SAC,98.1
+128,Marolambo,0.0125894643019672,164315,High prevalence (50% and above),Total,155.18
+129,Toamasina II,0.0653514057729479,254200,High prevalence (50% and above),PreSAC,66.06
+130,Toamasina II,0.0653514057729479,254200,High prevalence (50% and above),SAC,93.77
+131,Toamasina II,0.0653514057729479,254200,High prevalence (50% and above),Total,83.58
+132,Antanambao Manampontsy,-0.0017914478408813,53468,High prevalence (50% and above),PreSAC,118.34
+133,Antanambao Manampontsy,-0.0017914478408813,53468,High prevalence (50% and above),SAC,118.34
+134,Antanambao Manampontsy,-0.0017914478408813,53468,High prevalence (50% and above),Total,118.34
+135,Maroantsetra,0.0219605072373756,242780,High prevalence (50% and above),PreSAC,64.75
+136,Maroantsetra,0.0219605072373756,242780,High prevalence (50% and above),SAC,93.51
+137,Maroantsetra,0.0219605072373756,242780,High prevalence (50% and above),Total,82.93
+138,Vavatenina,0.0051216776135944,190317,High prevalence (50% and above),PreSAC,49.3
+139,Vavatenina,0.0051216776135944,190317,High prevalence (50% and above),SAC,95.43
+140,Vavatenina,0.0051216776135944,190317,High prevalence (50% and above),Total,78.46
+141,Soanierana Ivongo,0.0275005244704469,149481,High prevalence (50% and above),PreSAC,60.22
+142,Soanierana Ivongo,0.0275005244704469,149481,High prevalence (50% and above),SAC,98.72
+143,Soanierana Ivongo,0.0275005244704469,149481,High prevalence (50% and above),Total,84.56
+144,Amparafaravola,0.0165001844834108,294033,High prevalence (50% and above),PreSAC,54.71
+145,Amparafaravola,0.0165001844834108,294033,High prevalence (50% and above),SAC,54.71
+146,Amparafaravola,0.0165001844834108,294033,High prevalence (50% and above),Total,54.71
+147,Ambatondrazaka,0.0032556927223487,356645,High prevalence (50% and above),PreSAC,71.82
+148,Ambatondrazaka,0.0032556927223487,356645,High prevalence (50% and above),SAC,71.82
+149,Ambatondrazaka,0.0032556927223487,356645,High prevalence (50% and above),Total,71.82
+150,Moramanga,0.0247123003067557,302300,High prevalence (50% and above),PreSAC,0.0
+151,Moramanga,0.0247123003067557,302300,High prevalence (50% and above),SAC,0.0
+152,Moramanga,0.0247123003067557,302300,High prevalence (50% and above),Total,0.0
+153,Andilamena,0.0377510162585802,77487,Low prevalence (less than 20%),PreSAC,58.97
+154,Andilamena,0.0377510162585802,77487,Low prevalence (less than 20%),SAC,58.97
+155,Andilamena,0.0377510162585802,77487,Low prevalence (less than 20%),Total,58.97
+156,Mahajanga I,1.41404897893342,242402,Low prevalence (less than 20%),PreSAC,53.2
+157,Mahajanga I,1.41404897893342,242402,Low prevalence (less than 20%),SAC,93.65
+158,Mahajanga I,1.41404897893342,242402,Low prevalence (less than 20%),Total,78.77
+159,Soalala,-0.0166596186040175,52734,Low prevalence (less than 20%),PreSAC,0.0
+160,Soalala,-0.0166596186040175,52734,Low prevalence (less than 20%),SAC,86.1
+161,Soalala,-0.0166596186040175,52734,Low prevalence (less than 20%),Total,86.1
+162,Marovoay,-0.0060103270278053,200776,Low prevalence (less than 20%),PreSAC,70.83
+163,Marovoay,-0.0060103270278053,200776,Low prevalence (less than 20%),SAC,77.27
+164,Marovoay,-0.0060103270278053,200776,Low prevalence (less than 20%),Total,74.9
+165,Mitsinjo,-0.0189186964585073,65458,Low prevalence (less than 20%),PreSAC,0.0
+166,Mitsinjo,-0.0189186964585073,65458,Low prevalence (less than 20%),SAC,104.05
+167,Mitsinjo,-0.0189186964585073,65458,Low prevalence (less than 20%),Total,104.05
+168,Mahajanga II,-0.0055982933227536,85175,Low prevalence (less than 20%),PreSAC,0.0
+169,Mahajanga II,-0.0055982933227536,85175,Low prevalence (less than 20%),SAC,93.29
+170,Mahajanga II,-0.0055982933227536,85175,Low prevalence (less than 20%),Total,93.29
+171,Mandritsara,0.0411888125959902,279051,Low prevalence (less than 20%),PreSAC,71.63
+172,Mandritsara,0.0411888125959902,279051,Low prevalence (less than 20%),SAC,93.56
+173,Mandritsara,0.0411888125959902,279051,Low prevalence (less than 20%),Total,85.49
+174,Analalava,0.0071718268730993,163340,Moderate prevalence (20%-49%),PreSAC,55.44
+175,Analalava,0.0071718268730993,163340,Moderate prevalence (20%-49%),SAC,97.29
+176,Analalava,0.0071718268730993,163340,Moderate prevalence (20%-49%),Total,81.9
+177,Befandriana Nord,0.0207217606471168,264874,Low prevalence (less than 20%),PreSAC,73.28
+178,Befandriana Nord,0.0207217606471168,264874,Low prevalence (less than 20%),SAC,94.28
+179,Befandriana Nord,0.0207217606471168,264874,Low prevalence (less than 20%),Total,86.56
+180,Antsohihy,0.0330838176474337,150996,Low prevalence (less than 20%),PreSAC,58.19
+181,Antsohihy,0.0330838176474337,150996,Low prevalence (less than 20%),SAC,97.73
+182,Antsohihy,0.0330838176474337,150996,Low prevalence (less than 20%),Total,83.19
+183,Bealanana,0.015498870686874,157118,Low prevalence (less than 20%),PreSAC,68.59
+184,Bealanana,0.015498870686874,157118,Low prevalence (less than 20%),SAC,93.92
+185,Bealanana,0.015498870686874,157118,Low prevalence (less than 20%),Total,84.6
+186,Mampikony,0.0371810012845346,146966,Non-endemic,PreSAC,0.0
+187,Mampikony,0.0371810012845346,146966,Non-endemic,SAC,92.68
+188,Mampikony,0.0371810012845346,146966,Non-endemic,Total,92.68
+189,Maevatanana,0.0156336810494384,165903,Moderate prevalence (20%-49%),PreSAC,57.12
+190,Maevatanana,0.0156336810494384,165903,Moderate prevalence (20%-49%),SAC,95.79
+191,Maevatanana,0.0156336810494384,165903,Moderate prevalence (20%-49%),Total,81.57
+192,Tsaratanana,0.0304450564352066,133854,Moderate prevalence (20%-49%),PreSAC,58.39
+193,Tsaratanana,0.0304450564352066,133854,Moderate prevalence (20%-49%),SAC,93.28
+194,Tsaratanana,0.0304450564352066,133854,Moderate prevalence (20%-49%),Total,80.45
+195,Kandreho,-0.0136357397669397,22732,Low prevalence (less than 20%),PreSAC,76.89
+196,Kandreho,-0.0136357397669397,22732,Low prevalence (less than 20%),SAC,99.87
+197,Kandreho,-0.0136357397669397,22732,Low prevalence (less than 20%),Total,91.41
+198,Besalampy,-0.0041886798516241,78221,Low prevalence (less than 20%),PreSAC,0.0
+199,Besalampy,-0.0041886798516241,78221,Low prevalence (less than 20%),SAC,0.0
+200,Besalampy,-0.0041886798516241,78221,Low prevalence (less than 20%),Total,0.0
+201,Ambatomainty,0.0031227554064659,32323,Non-endemic,PreSAC,0.0
+202,Ambatomainty,0.0031227554064659,32323,Non-endemic,SAC,0.0
+203,Ambatomainty,0.0031227554064659,32323,Non-endemic,Total,0.0
+204,Antsalova,-0.0059002404170793,64098,Moderate prevalence (20%-49%),PreSAC,0.0
+205,Antsalova,-0.0059002404170793,64098,Moderate prevalence (20%-49%),SAC,0.0
+206,Antsalova,-0.0059002404170793,64098,Moderate prevalence (20%-49%),Total,0.0
+207,Maintirano,0.000698646946978,117124,Low prevalence (less than 20%),PreSAC,0.0
+208,Maintirano,0.000698646946978,117124,Low prevalence (less than 20%),SAC,0.0
+209,Maintirano,0.000698646946978,117124,Low prevalence (less than 20%),Total,0.0
+210,Morafenobe,0.0109905358985505,26407,Low prevalence (less than 20%),PreSAC,0.0
+211,Morafenobe,0.0109905358985505,26407,Low prevalence (less than 20%),SAC,0.0
+212,Morafenobe,0.0109905358985505,26407,Low prevalence (less than 20%),Total,0.0
+213,Beroroha,0.0122590451366418,50219,High prevalence (50% and above),PreSAC,0.0
+214,Beroroha,0.0122590451366418,50219,High prevalence (50% and above),SAC,90.41
+215,Beroroha,0.0122590451366418,50219,High prevalence (50% and above),Total,90.41
+216,Morombe,0.0082724154254515,128739,Non-endemic,PreSAC,0.0
+217,Morombe,0.0082724154254515,128739,Non-endemic,SAC,96.99
+218,Morombe,0.0082724154254515,128739,Non-endemic,Total,96.99
+219,Ankazoabo,0.014875949225963,72030,Low prevalence (less than 20%),PreSAC,0.0
+220,Ankazoabo,0.014875949225963,72030,Low prevalence (less than 20%),SAC,94.55
+221,Ankazoabo,0.014875949225963,72030,Low prevalence (less than 20%),Total,94.55
+222,Betioky Atsimo,0.0161531844686771,225595,Low prevalence (less than 20%),PreSAC,0.0
+223,Betioky Atsimo,0.0161531844686771,225595,Low prevalence (less than 20%),SAC,95.6
+224,Betioky Atsimo,0.0161531844686771,225595,Low prevalence (less than 20%),Total,95.6
+225,Ampanihy Ouest,0.0210237758678504,340783,Low prevalence (less than 20%),PreSAC,0.0
+226,Ampanihy Ouest,0.0210237758678504,340783,Low prevalence (less than 20%),SAC,96.59
+227,Ampanihy Ouest,0.0210237758678504,340783,Low prevalence (less than 20%),Total,96.59
+228,Sakaraha,0.0190645451482705,124240,Low prevalence (less than 20%),PreSAC,0.0
+229,Sakaraha,0.0190645451482705,124240,Low prevalence (less than 20%),SAC,91.36
+230,Sakaraha,0.0190645451482705,124240,Low prevalence (less than 20%),Total,91.36
+231,Benenitra,0.0165032267023409,42537,Low prevalence (less than 20%),PreSAC,0.0
+232,Benenitra,0.0165032267023409,42537,Low prevalence (less than 20%),SAC,106.74
+233,Benenitra,0.0165032267023409,42537,Low prevalence (less than 20%),Total,106.74
+234,Tsihombe,0.0279648875557954,121017,Low prevalence (less than 20%),PreSAC,96.01
+235,Tsihombe,0.0279648875557954,121017,Low prevalence (less than 20%),SAC,159.62
+236,Tsihombe,0.0279648875557954,121017,Low prevalence (less than 20%),Total,136.22
+237,Bekily,0.0242555892091017,181010,Low prevalence (less than 20%),PreSAC,0.0
+238,Bekily,0.0242555892091017,181010,Low prevalence (less than 20%),SAC,112.04
+239,Bekily,0.0242555892091017,181010,Low prevalence (less than 20%),Total,112.04
+240,Betroka,0.0315691238273919,209669,Low prevalence (less than 20%),PreSAC,67.74
+241,Betroka,0.0315691238273919,209669,Low prevalence (less than 20%),SAC,97.45
+242,Betroka,0.0315691238273919,209669,Low prevalence (less than 20%),Total,86.52
+243,Manja,0.0092717370214422,82594,Low prevalence (less than 20%),PreSAC,0.0
+244,Manja,0.0092717370214422,82594,Low prevalence (less than 20%),SAC,96.2
+245,Manja,0.0092717370214422,82594,Low prevalence (less than 20%),Total,96.2
+246,Morondava,0.0173973930999576,132363,Moderate prevalence (20%-49%),PreSAC,0.0
+247,Morondava,0.0173973930999576,132363,Moderate prevalence (20%-49%),SAC,94.33
+248,Morondava,0.0173973930999576,132363,Moderate prevalence (20%-49%),Total,94.33
+249,Mahabo,0.0115917613827276,155505,Moderate prevalence (20%-49%),PreSAC,0.0
+250,Mahabo,0.0115917613827276,155505,Moderate prevalence (20%-49%),SAC,94.89
+251,Mahabo,0.0115917613827276,155505,Moderate prevalence (20%-49%),Total,94.89
+252,Miandrivazo,0.0290567022014419,143697,Low prevalence (less than 20%),PreSAC,0.0
+253,Miandrivazo,0.0290567022014419,143697,Low prevalence (less than 20%),SAC,94.79
+254,Miandrivazo,0.0290567022014419,143697,Low prevalence (less than 20%),Total,94.79
+255,Antsiranana II,0.0317598154003046,115819,Low prevalence (less than 20%),PreSAC,70.76
+256,Antsiranana II,0.0317598154003046,115819,Low prevalence (less than 20%),SAC,98.01
+257,Antsiranana II,0.0317598154003046,115819,Low prevalence (less than 20%),Total,87.99
+258,Antsiranana I,0.958817834833225,126365,Low prevalence (less than 20%),PreSAC,44.89
+259,Antsiranana I,0.958817834833225,126365,Low prevalence (less than 20%),SAC,98.81
+260,Antsiranana I,0.958817834833225,126365,Low prevalence (less than 20%),Total,78.98
+261,Ambilobe,0.0137934078086487,237476,Moderate prevalence (20%-49%),PreSAC,61.77
+262,Ambilobe,0.0137934078086487,237476,Moderate prevalence (20%-49%),SAC,95.6
+263,Ambilobe,0.0137934078086487,237476,Moderate prevalence (20%-49%),Total,83.15
+264,Ambanja,-0.0120624057105568,209228,Moderate prevalence (20%-49%),PreSAC,50.51
+265,Ambanja,-0.0120624057105568,209228,Moderate prevalence (20%-49%),SAC,97.65
+266,Ambanja,-0.0120624057105568,209228,Moderate prevalence (20%-49%),Total,80.31
+267,Antalaha,0.0197209972749592,254323,High prevalence (50% and above),PreSAC,61.28
+268,Antalaha,0.0197209972749592,254323,High prevalence (50% and above),SAC,93.73
+269,Antalaha,0.0197209972749592,254323,High prevalence (50% and above),Total,81.79
+270,Sambava,0.0223998182761332,334403,High prevalence (50% and above),PreSAC,76.8
+271,Sambava,0.0223998182761332,334403,High prevalence (50% and above),SAC,95.04
+272,Sambava,0.0223998182761332,334403,High prevalence (50% and above),Total,88.33
+273,Andapa,0.0182538017418342,208621,High prevalence (50% and above),PreSAC,59.85
+274,Andapa,0.0182538017418342,208621,High prevalence (50% and above),SAC,97.94
+275,Andapa,0.0182538017418342,208621,High prevalence (50% and above),Total,83.93
