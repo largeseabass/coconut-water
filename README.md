@@ -14,4 +14,8 @@ As clear as coconut-water, some simple codes to make geohelminth infection predi
 This guides you through how to set up and use the functions.
 
 
+
+Endemicity Data downloaded from ESPEN database.
+
+
 :D
