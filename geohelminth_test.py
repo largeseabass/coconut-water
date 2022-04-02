@@ -18,6 +18,7 @@ Notes:
 
 """
 
+
 import pandas as pd
 import csv
 import numpy as np
@@ -33,9 +34,13 @@ from sklearn.multiclass import OneVsRestClassifier
 from sklearn.preprocessing import label_binarize
 from sklearn.preprocessing import StandardScaler
 from sklearn import datasets
+import matplotlib.pyplot as plt
 import os
 
 import time
+import warnings
+
+
 
 """
 Some Paths used in testing
@@ -136,152 +141,159 @@ print("Processing")
 
 def random_forest_modeling(csv_path, target_population):
     """
-    <1> Read Files
+    [csv_path]: string, the path where the csv file containing (all variables + endemicity level) is stored.
+    [target_population]: string, in ESPEN database, there are three categories for population.
+    Select one category before doing the random forest classification.
+
+    This section needs to be carefully modified when using on database other than ESPEN.
     """
+    try:
+        with warnings.catch_warnings():
+            warnings.filterwarnings("ignore", category=DeprecationWarning)
+            #warnings.filterwarnings("ignore", category=SettingWithCopyWarning)
+            print(1)
+            """
+            <1> Read Files
+            """
 
-    #Population selection: PreSAC, SAC, Total
-    pop_items_list = ['PreSAC', 'SAC', 'Total']
-    if target_population in pop_items_list:
-        target_pop = target_population
-    else:
-        target_pop = 'Total'
-        print("Target Population tag not applicable, use total population as defualt")
-
-
-    df = pd.read_csv(csv_path)
-
-    df.loc[df['TargetPop'] == target_pop]
-
-    """
-    <2> Relabel the Endemicity
-
-    #List the names of keys here
-    #Class 1: EVPSOIL, EVPTRNS, GRN,  GWETPROF, GWETROOT, GWETTOP, PRECTOTLAND,QINFIL
-    #Class 2: TSOIL1, TSOIL2, TSOIL3, TSOIL4, TSOIL5, TSOIL6
-    #Class 3: 'waterPH_mean', 'bulkDensity__mean', 'clay__mean', 'coarsefragment__mean', 'sand__mean', 'silt__mean', 'Population','night'
-
-    # label_class_1 = ['EVPSOIL', 'EVPTRNS', 'GRN',  'GWETPROF', 'GWETROOT', 'GWETTOP', 'PRECTOTLAND','QINFIL','EVP','GWE','TSOIL']
-    # label_class_3 = ['waterPH_mean', 'bulkDensity__mean', 'clay__mean', 'coarsefragment__mean', 'sand__mean', 'silt__mean', 'Population','night_mean']
-    # label_class_soil = ['waterPH_mean', 'bulkDensity__mean', 'clay__mean', 'coarsefragment__mean', 'sand__mean', 'silt__mean']
-    """
-
-    # Get indexes where name column has value john
-    indexNames = df[df['Endemicity'] == 'Not reported'].index
-    # Delete these row indexes from dataFrame
-    df.drop(indexNames , inplace=True)
+            #Population selection: PreSAC, SAC, Total
+            pop_items_list = ['PreSAC', 'SAC', 'Total']
+            if target_population in pop_items_list:
+                target_pop = target_population
+            else:
+                target_pop = 'Total'
+                print("Target Population tag not applicable, use total population as defualt")
 
 
-    #Combine the "Non-endemic" and "Low Prevalence" classes, since the "Non-endemic" group contains way fewer cases than the other ones.
-    df.loc[df['Endemicity'] == 'Non-endemic', 'Endemicity'] = 1
-    df.loc[df['Endemicity'] == 'Low prevalence (less than 20%)', 'Endemicity'] = 1
-    df.loc[df['Endemicity'] == 'Moderate prevalence (20%-49%)', 'Endemicity'] = 2
-    df.loc[df['Endemicity'] == 'High prevalence (50% and above)', 'Endemicity'] = 3
+            df = pd.read_csv(csv_path)
 
-    print("[Endemicity Counts]")
-    print(df['Endemicity'].value_counts())
+            df.loc[df['TargetPop'] == target_pop]
 
+            """
+            <2> Relabel the Endemicity
+            """
 
-
-    """
-    <3> RF_calculation functions
-    Use RF_calculation
-
-    """
-    y=df['Endemicity']  # Get the y values
-    y=y.astype('int')
-
-    #useless labels now: ['Unnamed: 0','name_match','TargetPop','Cov'])
-    df.drop(['Unnamed: 0','name_match','TargetPop','Cov'], axis=1,inplace=True)
-    x_labels = np.array(df.keys())
-
-    X = df[df.keys()]
-    X.astype('float')
-
-    # Split dataset into training set and test set
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3) # 70% training and 30% test
-
-    # do something with unbalanced sample based on the value of'Endemicity'
-    X_test.drop(['Endemicity'],axis=1,inplace=True)
-
-    # set the minority class to a separate dataframe
-    df_1 = X_train[X_train['Endemicity'] == 1]
-    df_2 = X_train[X_train['Endemicity'] == 2]
-    df_3 = X_train[X_train['Endemicity'] == 3]
-
-    print(X_train['Endemicity'].value_counts())
-
-    find_max_value = max(np.array(X_train['Endemicity'].value_counts()))
-
-    #upsample the minority classes.
-    #If one class is the majority class, it skips this process.
-    if (df_1.shape[0] == find_max_value):
-        df_1_upsampled = df_1
-        print("Low Endemicity has the most samples here")
-    else:
-        df_1_upsampled = resample(df_1, random_state=42, n_samples=find_max_value, replace = True)
-
-    if (df_2.shape[0] == find_max_value):
-        df_2_upsampled = df_2
-        print("Moderate Endemicity has the most samples here")
-    else:
-        df_2_upsampled = resample(df_2, random_state=42, n_samples=find_max_value, replace = True)
-
-    if (df_3.shape[0] == find_max_value):
-        df_3_upsampled = df_3
-        print("High Endemicity has the most samples here")
-    else:
-        df_3_upsampled = resample(df_3, random_state=42, n_samples=find_max_value, replace = True)
-
-    #concatenate the upsampled dataFrame
-    X_train = pd.concat([df_2_upsampled, df_1_upsampled,df_3_upsampled])
-
-    print("[Check the values after up-sample]")
-    print(X_train['Endemicity'].value_counts())
-
-    #Clean up the datasets after upsampling + double-check their types
-
-    X_train = X_train.astype('float')
-    X_test = X_test.astype('float')
-
-    y_train = X_train['Endemicity'].copy()
-    y_train = y_train.astype('int')
-
-    X_train.drop(['Endemicity'],axis=1,inplace=True)
-
-    sc = StandardScaler()
-    sc.fit(X_train)
-    X_train_std = sc.transform(X_train)
-    X_test_std = sc.transform(X_test)
+            # Get indexes where name column has value john
+            indexNames = df[df['Endemicity'] == 'Not reported'].index
+            # Delete these row indexes from dataFrame
+            df.drop(indexNames , inplace=True)
 
 
-    #Create a Gaussian Classifier
-    clf=RandomForestClassifier(n_estimators=1000)
+            #Combine the "Non-endemic" and "Low Prevalence" classes, since the "Non-endemic" group contains way fewer cases than the other ones.
+            df.loc[df['Endemicity'] == 'Non-endemic', 'Endemicity'] = 1
+            df.loc[df['Endemicity'] == 'Low prevalence (less than 20%)', 'Endemicity'] = 1
+            df.loc[df['Endemicity'] == 'Moderate prevalence (20%-49%)', 'Endemicity'] = 2
+            df.loc[df['Endemicity'] == 'High prevalence (50% and above)', 'Endemicity'] = 3
 
-    #Train the model using the training sets y_pred=clf.predict(X_test)
-    clf.fit(X_train,y_train)
-    y_pred=clf.predict(X_test)
-    #y_score = clf.predict_proba(X_test)
-    #print("Random Forest Score")
-    #print(y_score)
-
-    print("[Random Forest Results]")
-    score_this = accuracy_score(y_test, y_pred)
-    print("Accuracy"+str(score_this))
-    #print(metrics.confusion_matrix(y_test, y_pred))
-    confusion_matrix_this = metrics.confusion_matrix(y_test, y_pred)
-
-    for i in range(3):
-        print("[Actual Endemicity Level %i ] [Predict 1: %i] [Predict 2: %i] [Predict 3: %i]"%((i+1),confusion_matrix_this[i,0],confusion_matrix_this[i,1],confusion_matrix_this[i,2]))
+            print("[Endemicity Counts]")
+            print(df['Endemicity'].value_counts())
 
 
 
-    return clf, sc
+            """
+            <3> RF_calculation functions
+            Use RF_calculation
+            """
+            y=df['Endemicity']  # Get the y values
+            y=y.astype('int')
+
+            #useless labels now: ['Unnamed: 0','name_match','TargetPop','Cov'])
+            df.drop(['Unnamed: 0','name_match','TargetPop','Cov'], axis=1,inplace=True)
+            x_labels = np.array(df.keys())
+
+            X = df[df.keys()]
+            X.astype('float')
+
+            # Split dataset into training set and test set
+            X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3) # 70% training and 30% test
+
+            # do something with unbalanced sample based on the value of'Endemicity'
+            X_test.drop(['Endemicity'],axis=1,inplace=True)
+
+            # set the minority class to a separate dataframe
+            df_1 = X_train[X_train['Endemicity'] == 1]
+            df_2 = X_train[X_train['Endemicity'] == 2]
+            df_3 = X_train[X_train['Endemicity'] == 3]
+
+            print(X_train['Endemicity'].value_counts())
+
+            find_max_value = max(np.array(X_train['Endemicity'].value_counts()))
+
+            #upsample the minority classes.
+            #If one class is the majority class, it skips this process.
+            if (df_1.shape[0] == find_max_value):
+                df_1_upsampled = df_1
+                print("Low Endemicity has the most samples here")
+            else:
+                df_1_upsampled = resample(df_1, random_state=42, n_samples=find_max_value, replace = True)
+
+            if (df_2.shape[0] == find_max_value):
+                df_2_upsampled = df_2
+                print("Moderate Endemicity has the most samples here")
+            else:
+                df_2_upsampled = resample(df_2, random_state=42, n_samples=find_max_value, replace = True)
+
+            if (df_3.shape[0] == find_max_value):
+                df_3_upsampled = df_3
+                print("High Endemicity has the most samples here")
+            else:
+                df_3_upsampled = resample(df_3, random_state=42, n_samples=find_max_value, replace = True)
+
+            #concatenate the upsampled dataFrame
+            X_train = pd.concat([df_2_upsampled, df_1_upsampled,df_3_upsampled])
+
+            print("[Check the values after up-sample]")
+            print(X_train['Endemicity'].value_counts())
+
+            #Clean up the datasets after upsampling + double-check their types
+
+            X_train = X_train.astype('float')
+            X_test = X_test.astype('float')
+
+            y_train = X_train['Endemicity'].copy()
+            y_train = y_train.astype('int')
+
+            X_train.drop(['Endemicity'],axis=1,inplace=True)
+
+            sc = StandardScaler()
+            sc.fit(X_train)
+            X_train_std = sc.transform(X_train)
+            X_test_std = sc.transform(X_test)
+
+
+            #Create a Gaussian Classifier
+            clf=RandomForestClassifier(n_estimators=1000)
+
+            #Train the model using the training sets y_pred=clf.predict(X_test)
+            clf.fit(X_train,y_train)
+            y_pred=clf.predict(X_test)
+            #y_score = clf.predict_proba(X_test)
+            #print("Random Forest Score")
+            #print(y_score)
+
+            print("[Random Forest Results]")
+            score_this = accuracy_score(y_test, y_pred)
+            print("Accuracy"+str(score_this))
+            #print(metrics.confusion_matrix(y_test, y_pred))
+            confusion_matrix_this = metrics.confusion_matrix(y_test, y_pred)
+
+            for i in range(3):
+                print("[Actual Endemicity Level %i ] [Predict 1: %i] [Predict 2: %i] [Predict 3: %i]"%((i+1),confusion_matrix_this[i,0],confusion_matrix_this[i,1],confusion_matrix_this[i,2]))
+
+
+
+            return clf, sc, X_test_std,y_pred,x_labels[1:,],np.array(y_test)
+
+    except:
+        pass
+        print("Random Forest Classifier: Fail")
+        print("Please Check the input file format")
 
 
 def create_file(endemicity_csv_path,saving_csv_path):
     """
-    [endemicity_csv_path]: the path of the endemicity data downloaded.
-    [saving_csv_path]: the path to save the master endemicity csv file.
+    [endemicity_csv_path]: string, the path of the endemicity data downloaded.
+    [saving_csv_path]: string, the path to save the master endemicity csv file.
 
     Process the endemicity data file downloaded. Take only the columns we are interested.
     district name + endemicity + cov + target population
@@ -314,12 +326,12 @@ def create_file(endemicity_csv_path,saving_csv_path):
 
 def add_csv(saving_csv_path,new_csv_path,column_taken,key_column,new_column_name):
     """
-    [saving_csv_path]: the path for endemicity csv file, which act as the master csv data saving file.
-    [new_csv_path]: the path for the csv file to be added to the endemicity file.
-    [column_taken]: the name of the column of the new csv file to be added to the endemicity csv file.
-    [key_column]: the name of the column(indicating the district) we use to compare with 'name_match' column
+    [saving_csv_path]: string, the path for endemicity csv file, which act as the master csv data saving file.
+    [new_csv_path]: string, the path for the csv file to be added to the endemicity file.
+    [column_taken]: string, the name of the column of the new csv file to be added to the endemicity csv file.
+    [key_column]: string, the name of the column(indicating the district) we use to compare with 'name_match' column
     in endemicity csv file to perform dataframe merges.
-    [new_column_name]: the name of the new column added to the endemicity csv file.
+    [new_column_name]: string, the name of the new column added to the endemicity csv file.
 
     Add the column chosen from new csv file(stored at new_csv_path) to the old csv file(stored at saving_csv_path),
     with the key name of matching column specify as key_column,
@@ -354,12 +366,12 @@ def add_csv(saving_csv_path,new_csv_path,column_taken,key_column,new_column_name
 
 def add_raster(raster_list,vector_path,name_list,saving_csv_path,key_column):
     """
-    [raster_list]: a list of files to be processed in QGIS zonal statistics.
-    [vector_path]: the path of the shape file used as mask for zonal STATISTICS.
-    [name_list]: a list of column/key names for store the zonal statistics results in the endemicity csv file.
+    [raster_list]: np.array/list, a list of files to be processed in QGIS zonal statistics.
+    [vector_path]: string, the path of the shape file used as mask for zonal STATISTICS.
+    [name_list]: np.array/list, a list of column/key names for store the zonal statistics results in the endemicity csv file.
     One name for each raster file in raster_list.
-    [saving_csv_path]: the path for endemicity csv file, which act as the master csv data saving file.
-    [key_column]: the name of the column(indicating the district) we use to compare with 'name_match' column
+    [saving_csv_path]: string, the path for endemicity csv file, which act as the master csv data saving file.
+    [key_column]: string, the name of the column(indicating the district) we use to compare with 'name_match' column
     in endemicity csv file to perform dataframe merges.
 
 
@@ -404,8 +416,129 @@ def add_raster(raster_list,vector_path,name_list,saving_csv_path,key_column):
     except:
         pass
         print("Add Raster Layer: Fail")
-        print("Please check the file paths and file format")
+        print("Please check the saving_csv_path and file format")
         return False
+
+
+def partial_dependence_plot(X_test, this_clf, n_number,store_graph_path,x_labels):
+    """
+    [X_test] np.array, the np.array of variables (need to make sure none of them are in the training set)
+             ! pre-processed with scalar [see [sc] in def random_forest_modeling]
+    [this_clf] machine learning model, the random forest model after training
+    [n_number] int, the number of points to take to create partial dependence plot
+    [store_graph_path] string, the directory to store the partial dependence plot
+    [x_labels] np.array, the label of variables, in the order of X_test.
+
+    for each variable:
+        (1) create a copy of [X_test], create empty lists for y_pred, variable_value.
+        (2) find the variable's range
+        (3) interpolate ([n_number]+2) intervals, create a list of variable values without the two end values.(n_number in total)
+        (4) for each variable value:
+        (4.1)replace the whole column with that particular value
+        (4.2) random forest classification with [this_clf], and store average value of this_y_pred in y_pred
+        (5) plot graph for y_pred against variable_value
+        (6) store the graph in the directory [store_graph_path] with name given by [x_labels]
+
+    """
+    try:
+        with warnings.catch_warnings():
+            warnings.filterwarnings("ignore", category=DeprecationWarning)
+            xarray = []
+            yarray = []
+            for i in range(len(x_labels)):
+                y_pred = []
+                print("PDP:"+x_labels[i])
+
+                #create a copy of X_test and change the value of the list
+                this_X = X_test.copy()
+                this_key = x_labels[i]
+                this_column = this_X[:,i]
+                print(this_column)
+                variable_value0 = np.sort(this_column)
+                print(variable_value0)
+                variable_value = []
+                #to eliminate extreme values
+                index_value = np.floor(len(variable_value0)/(n_number+2)).astype("int")
+                m = index_value
+                while m <= (len(variable_value0)-1):
+                    variable_value.append(variable_value0[m])
+                    m = m+index_value
+
+                for this_value in variable_value:
+                    this_X[:,i] = this_value
+                    #random Forest
+                    this_y_pred=this_clf.predict(this_X)
+                    y_pred.append(np.average(this_y_pred))
+
+                xarray.append(variable_value)
+                yarray.append(y_pred)
+
+                store_graph_name = store_graph_path + x_labels[i]+".png"
+
+                fig, ax = plt.subplots()
+                ax.plot(variable_value, y_pred)
+
+                ax.set(xlabel=x_labels[i], ylabel='endemicity')
+                ax.set_title('Partial Dependence Plot: Endemicity against '+x_labels[i]+'(after scaling)')
+                ax.grid(True)
+                plt.savefig(store_graph_name)
+
+
+            return xarray,yarray
+
+    except:
+        print("Partial Dependence Plot: fail")
+        print("Please check the store_graph_path")
+
+
+def plot_test_sample(store_graph_path, x_labels,y_pred,X_test,y_test):
+    """
+    [store_graph_path] string, the path of the directory to store the graphs.
+    [x_labels] np.array, the array of variable labels
+    [y_pred] np.array, the array of predicted y value
+    [X_test] np.array, the array of variables (Need to make sure none of them are in the training sample)
+
+    Generate plot of predicted endemicity value against
+    """
+    try:
+        for i in range(len(x_labels)):
+            store_graph_name = store_graph_path + x_labels[i]+".png"
+            print(store_graph_name)
+            x1, y1, x2, y2, x3, y3 = [],[],[],[],[],[]
+            y11, y22, y33 = [],[],[]
+            for j in range(len(y_pred)):
+                if y_pred[j] == 1:
+                    x1.append(X_test[j][i])
+                    y1.append(1)
+                    y11.append(y_test[j])
+                else:
+                    if y_pred[j] == 2:
+                        x2.append(X_test[j][i])
+                        y2.append(2)
+                        y22.append(y_test[j])
+                    else:
+                        x3.append(X_test[j][i])
+                        y3.append(3)
+                        y33.append(y_test[j])
+
+            fig, ax = plt.subplots()
+            x01 = np.concatenate([x1,x2,x3])
+            y01 = np.concatenate([y1,y2,y3])
+            y02 = np.concatenate([y11,y22,y33])
+            ax.scatter(x01, y01, c='tab:blue', label='test value',alpha=0.5, edgecolors='none')
+            ax.scatter(x01, y02, c='tab:orange', label='real value',alpha=0.5, edgecolors='none')
+            ax.set(xlabel=x_labels[i], ylabel='endemicity')
+            ax.set_title('Predict Endemicity against '+x_labels[i]+'(after scaling)')
+            ax.legend()
+            ax.grid(True)
+            plt.savefig(store_graph_name)
+            #
+    except:
+        print("Plot Test Sample: fail")
+        print("Please check store_graph_path, x_label, y_pred, X_test")
+
+
+
 
 
 
@@ -413,14 +546,38 @@ def add_raster(raster_list,vector_path,name_list,saving_csv_path,key_column):
 Some commands use to test
 """
 """
-(1) Test random forest modeling
+(1) 
+Test random forest modeling
 2014all.csv is the csv file contains all the variable data I've processed.
-"""
+[this_clf] the random forest model
+[this_scalar] the scaling methods
+[X_test] the 2d matrix(number of samples * number of variables) used to store the ctx_variables
+[x_labels] the array of variable names
 
-this_clf, this_scalar = random_forest_modeling(csv_path, "Total")
+"""
+this_clf, this_scalar,X_test,y_pred,x_labels,y_test = random_forest_modeling(csv_path, "Total")
 
 """
-(2) Test Create csv
+Plot Partial Dependence Plots
+n_number is the number of data points in one plot.
+"""
+# store_graph_path = "/Users/huangliting/Desktop/geohelminth_test/pdplot/"
+# n_number = 10
+#xarray, yarray = partial_dependence_plot(X_test, this_clf, n_number,store_graph_path,x_labels)
+
+
+"""
+plot a graph of: for each variable, plot a scatter graph for the three level of endemicity
+real and predicted endemicity
+"""
+# store_graph_path = "/Users/huangliting/Desktop/geohelminth_test/plot/"
+# plot_test_sample(store_graph_path, x_labels,y_pred,X_test,y_test)
+
+
+
+"""
+(2) 
+Test Create csv
 create a new endemicity csv file.
 """
 # if create_file(endemicity_csv_path,saving_csv_path):
@@ -428,7 +585,8 @@ create a new endemicity csv file.
 
 
 """
-(3) Test add csv to the endemicity csv
+(3) 
+Test add csv to the endemicity csv
 """
 # column_name = 'p2014est'
 # key_this_csv = 'ADM2_EN'
@@ -438,14 +596,15 @@ create a new endemicity csv file.
 
 
 """
-(4) Test add raster (use zonal statistics to change into csv) to endemicity csv
+(4) 
+Test add raster (use zonal statistics to change into csv) to endemicity csv
 """
 
-namelist = ['sand']
-key_this_csv = 'ADM2_EN'
-
-if add_raster(raster_list,vector_path,namelist,saving_csv_path,key_this_csv):
-    print("Success")
+# namelist = ['sand']
+# key_this_csv = 'ADM2_EN'
+#
+# if add_raster(raster_list,vector_path,namelist,saving_csv_path,key_this_csv):
+#     print("Success")
 
 
 
