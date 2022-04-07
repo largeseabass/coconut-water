@@ -33,3 +33,19 @@ I'll share a list of all data sources later. They can all be found online.
 
 Most Outputs are .csv files.
 
+You can get Partial Dependence Plots using def partial_dependence_plot.
+
+![alt text](https://github.com/largeseabass/coconut-water/blob/main/clay__mean.png)
+
+
+For Importance Plots generating using def importance_plot, here are two examples:
+
+![alt text](https://github.com/largeseabass/coconut-water/blob/main/impurity_importance.png)
+
+![alt text](https://github.com/largeseabass/coconut-water/blob/main/permutation_importance.png)
+
+
+
+To get an overview of how real and predicted endemicity distributed in test data, you can use plot_test_sample.
+
+![alt text](https://github.com/largeseabass/coconut-water/blob/main/clay__mean_test.png)
