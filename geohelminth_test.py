@@ -265,9 +265,9 @@ def random_forest_modeling(csv_path, target_population):
             clf=RandomForestClassifier(n_estimators=1000)
 
             #Train the model using the training sets y_pred=clf.predict(X_test)
-            clf.fit(X_train,y_train)
-            y_pred=clf.predict(X_test)
-            #y_score = clf.predict_proba(X_test)
+            clf.fit(X_train_std,y_train)
+            y_pred=clf.predict(X_test_std)
+            #y_score = clf.predict_proba(X_test_std)
             #print("Random Forest Score")
             #print(y_score)
 
