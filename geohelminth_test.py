@@ -36,9 +36,11 @@ from sklearn.preprocessing import StandardScaler
 from sklearn import datasets
 import matplotlib.pyplot as plt
 import os
+from sklearn.inspection import permutation_importance
 
 import time
 import warnings
+from dbfread import DBF
 
 
 
@@ -267,7 +269,7 @@ def random_forest_modeling(csv_path, target_population):
             #Train the model using the training sets y_pred=clf.predict(X_test)
             clf.fit(X_train_std,y_train)
             y_pred=clf.predict(X_test_std)
-            #y_score = clf.predict_proba(X_test_std)
+            #y_score = clf.predict_proba(X_test)
             #print("Random Forest Score")
             #print(y_score)
 
@@ -279,7 +281,6 @@ def random_forest_modeling(csv_path, target_population):
 
             for i in range(3):
                 print("[Actual Endemicity Level %i ] [Predict 1: %i] [Predict 2: %i] [Predict 3: %i]"%((i+1),confusion_matrix_this[i,0],confusion_matrix_this[i,1],confusion_matrix_this[i,2]))
-
 
 
             return clf, sc, X_test_std,y_pred,x_labels[1:,],np.array(y_test)
@@ -364,7 +365,7 @@ def add_csv(saving_csv_path,new_csv_path,column_taken,key_column,new_column_name
         print("Please Check the new csv file format")
         return False
 
-def add_raster(raster_list,vector_path,name_list,saving_csv_path,key_column):
+def add_raster(raster_list,vector_path,name_list,saving_csv_path,key_column,temporary_path):
     """
     [raster_list]: np.array/list, a list of files to be processed in QGIS zonal statistics.
     [vector_path]: string, the path of the shape file used as mask for zonal STATISTICS.
@@ -373,6 +374,7 @@ def add_raster(raster_list,vector_path,name_list,saving_csv_path,key_column):
     [saving_csv_path]: string, the path for endemicity csv file, which act as the master csv data saving file.
     [key_column]: string, the name of the column(indicating the district) we use to compare with 'name_match' column
     in endemicity csv file to perform dataframe merges.
+    [temporary_path]: string, the path with the name of .csv file to store temporary csv file. The created file will be removed at the end of the process.
 
 
     temporary_path is where to store the temporary file. This file will be delete at the end of each iteration.
@@ -382,16 +384,35 @@ def add_raster(raster_list,vector_path,name_list,saving_csv_path,key_column):
     """
     try:
 
-        temporary_path = '/Users/huangliting/Desktop/Zonal_statistics_results/trythis.csv'
+
 
         for i in range(len(raster_list)):
             # Run zonal statistics and store the output csv file in the temporary path
             file_output = temporary_path
             file_input = raster_list[i]
             feedback = QgsProcessingFeedback()
-            processing.run("native:zonalstatisticsfb", {'INPUT':vector_path,'INPUT_RASTER':file_input,'RASTER_BAND':1,'COLUMN_PREFIX':'_','STATISTICS':[2],'OUTPUT':file_output})
 
-            #Real start
+            #(A)-start
+            processing.run("native:zonalstatisticsfb", {'INPUT':vector_path,'INPUT_RASTER':file_input,'RASTER_BAND':1,'COLUMN_PREFIX':'_','STATISTICS':[2],'OUTPUT':file_output})
+            #(A)-end
+            
+            """
+            The code below was added by Michael on 3/30/2022, 
+            this requires that the following import statement be added at the start of the script: from dbfread import DBF
+            If you have problem running the processing.run(), try comment out (A) and use the codes (B) below.
+            """
+            #(B)-start
+            # processing.run("native:zonalstatistics", {'INPUT_VECTOR':vector_path,'INPUT_RASTER':file_input,'RASTER_BAND':1,'COLUMN_PREFIX':'_','STATISTICS':[2]})
+            # csv_fn = temporary_path
+            # table = DBF(vector_path[:-4] + ".dbf")# table variable is a DBF object
+            # with open(csv_fn, 'w', newline = '') as f:# create a csv file, fill it with dbf content
+            #     writer = csv.writer(f)
+            #     writer.writerow(table.field_names)# write the column name
+            #     for record in table:# write the rows
+            #         writer.writerow(list(record.values()))
+            #(B)-end
+            
+            #Combine files - start
             data_add = pd.read_csv(file_output)
             data_saving = pd.read_csv(saving_csv_path)
 
@@ -539,6 +560,49 @@ def plot_test_sample(store_graph_path, x_labels,y_pred,X_test,y_test):
 
 
 
+def importance_plot(clf, store_graph_path,x_labels,X_test, y_test, n_repeats=10, Use_Permutation=True):
+    """
+    [clf] the random forest model. Input values need to be scaled.
+    [store_graph_path] string, the directory to store the graph.
+    [x_labels] np.array, the names of variables.
+    [X_test] np.array, the variables after scaling and in the order of x_labels.
+    [y_test] np.array, the actual value of endemicity.
+    [n_repeats] int, the number of times to sample the variables for permutation importance plot.
+    [Use_Permutation] bool, True for performing permutation importance plot, False for performing impurity importance plot.
+    """
+    with warnings.catch_warnings():
+        warnings.filterwarnings("ignore", category=DeprecationWarning)
+        if Use_Permutation:
+            #permutation importance
+            print("Permutation Importance Calculation")
+            result = permutation_importance(clf, X_test, y_test, n_repeats=n_repeats, random_state=42)
+            forest_importances = pd.Series(result.importances_mean, index=x_labels)
+
+            fig, ax = plt.subplots(figsize=(60,20))
+
+            forest_importances.plot.bar(yerr=result.importances_std, ax=ax)
+            ax.set_title("Feature importances using permutation on full model")
+            ax.set_ylabel("Mean accuracy decrease")
+            fig.tight_layout()
+            store_graph_name = store_graph_path + "permutation_importance.png"
+            plt.savefig(store_graph_name)
+
+
+        else:
+            #impurity importance
+            print("Impurity Importance Calculation")
+            importances = clf.feature_importances_
+            std = np.std([tree.feature_importances_ for tree in clf.estimators_], axis=0)
+            forest_importances = pd.Series(importances, index=x_labels)
+
+            fig, ax = plt.subplots(figsize=(60,20))
+            forest_importances.plot.bar(yerr=std, ax=ax)
+            ax.set_title("Feature importances using MDI")
+            ax.set_ylabel("Mean decrease in impurity")
+
+            fig.tight_layout()
+            store_graph_name = store_graph_path + "impurity_importance.png"
+            plt.savefig(store_graph_name)
 
 
 
@@ -546,7 +610,7 @@ def plot_test_sample(store_graph_path, x_labels,y_pred,X_test,y_test):
 Some commands use to test
 """
 """
-(1) 
+(1)
 Test random forest modeling
 2014all.csv is the csv file contains all the variable data I've processed.
 [this_clf] the random forest model
@@ -555,15 +619,22 @@ Test random forest modeling
 [x_labels] the array of variable names
 
 """
-this_clf, this_scalar,X_test,y_pred,x_labels,y_test = random_forest_modeling(csv_path, "Total")
+# this_clf, this_scalar,X_test,y_pred,x_labels,y_test = random_forest_modeling(csv_path, "Total")
+
+
+"""
+Importance Plot
+"""
+# store_graph_path = "/Users/huangliting/Desktop/geohelminth_test/mean_decrease_impurity/"
+# importance_plot(this_clf, store_graph_path,x_labels,X_test, y_test, n_repeats=10, Use_Permutation=True)
 
 """
 Plot Partial Dependence Plots
 n_number is the number of data points in one plot.
 """
-# store_graph_path = "/Users/huangliting/Desktop/geohelminth_test/pdplot/"
+# store_graph_path = "/Users/huangliting/Desktop/geohelminth_test/mean_decrease_impurity/"
 # n_number = 10
-#xarray, yarray = partial_dependence_plot(X_test, this_clf, n_number,store_graph_path,x_labels)
+# xarray, yarray = partial_dependence_plot(X_test, this_clf, n_number,store_graph_path,x_labels)
 
 
 """
@@ -576,7 +647,7 @@ real and predicted endemicity
 
 
 """
-(2) 
+(2)
 Test Create csv
 create a new endemicity csv file.
 """
@@ -585,25 +656,26 @@ create a new endemicity csv file.
 
 
 """
-(3) 
+(3)
 Test add csv to the endemicity csv
 """
 # column_name = 'p2014est'
 # key_this_csv = 'ADM2_EN'
 # new_column_name = '2014Population'
+
 # if add_csv(saving_csv_path,add_new_csv_path,column_name,key_this_csv,new_column_name):
 #     print("Success")
 
 
 """
-(4) 
+(4)
 Test add raster (use zonal statistics to change into csv) to endemicity csv
 """
-
+#
 # namelist = ['sand']
 # key_this_csv = 'ADM2_EN'
-#
-# if add_raster(raster_list,vector_path,namelist,saving_csv_path,key_this_csv):
+# temporary_path = '/Users/huangliting/Desktop/Zonal_statistics_results/trythis.csv'
+# if add_raster(raster_list,vector_path,namelist,saving_csv_path,key_this_csv, temporary_path):
 #     print("Success")
 
 
