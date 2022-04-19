@@ -4,16 +4,14 @@ As clear as coconut-water, some simple codes to make geohelminth infection predi
 
 ## Installation Requirement
 
+This script may only work on mac.
+
 (1) Need to Download the latest Version of QGIS. (I'm using QGIS 3.24.0-Tisler)
 
-
-(2) This script may only work on mac.
-
-
-(3) Please download all the files then read all the lines in the geohelminth_test.py
+(2) Clone this responsitory (can ignore the /results file)
 
 
-This guides you through how to set up and use the functions. Tutorials are also included in geohelminth_test.py. Functions are very easy to use.
+Reading all the lines in the geohelminth_test.py guides you through how to set up and use the functions. Tutorials are also included in geohelminth_test.py. Functions are very easy to use.
 
 
 
