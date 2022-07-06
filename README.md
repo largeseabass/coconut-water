@@ -18,6 +18,35 @@ Reading all the lines in the geohelminth_test.py guides you through how to set u
 Make sure you run the Python script using the python in QGIS. (you could set the path in your compiler)
 
 
+## Install GDAL
+
+
+<Mac> via conda in terminal:
+
+
+(1) Create a new conda enviornment
+
+
+(2) Conda-forge GDAL
+
+
+(3) Change Path
+
+
+(4) Check GDAL version
+
+
+
+'''
+conda create --name  gis-gdal
+conda activate gis-gdal   
+conda install -n gis-gdal -c conda-forge gdal=3.5.1
+echo 'export PATH=/Library/Frameworks/GDAL.framework/Programs:$PATH' >> ~/.bash_profile
+source ~/.bash_profile
+gdalinfo --version
+'''
+
+
 
 ## Method
 
